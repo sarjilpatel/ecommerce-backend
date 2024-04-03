@@ -9,10 +9,25 @@ if (process.env.NODE_ENV !== "PRODUCTION") {
   require("dotenv").config();
 }
 
+const allowedOrigins = ["http://localhost:5173", "http://localhost:5174"];
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+  })
+);
+
 app.use(express.json());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors());
 
 app.use("/uploads", express.static("uploads"));
 
