@@ -9,7 +9,7 @@ module.exports = {
         primaryKey: true,
         defaultValue: Sequelize.UUIDV4,
       },
-      name: {
+      vName: {
         type: Sequelize.STRING, // Adjust the length of the string as needed
       },
       createdAt: {

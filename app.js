@@ -34,10 +34,14 @@ app.use("/uploads", express.static("uploads"));
 const authRoutes = require("./app/routes/authRoute");
 const userRoutes = require("./app/routes/userRoute");
 const brandRoutes = require("./app/routes/brandRoute");
+const groupRoutes = require("./app/routes/groupRoute");
+const sizeCategoryRoutes = require("./app/routes/sizes/sizecategory");
 
 app.use(process.env.API_VERSION + "/auth", authRoutes);
 app.use(process.env.API_VERSION + "/user", userRoutes);
-app.use(process.env.API_VERSION + "/brand", brandRoutes);
+app.use(process.env.API_VERSION + "/brands", brandRoutes);
+app.use(process.env.API_VERSION + "/groups", groupRoutes);
+app.use(process.env.API_VERSION + "/sizecategories", sizeCategoryRoutes);
 
 // app.use(errorMiddleware);
 

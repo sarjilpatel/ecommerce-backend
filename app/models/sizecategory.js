@@ -7,8 +7,8 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         defaultValue: DataTypes.UUIDV4,
       },
-      name: {
-        type: DataTypes.STRING, // Adjust the length of the string as needed
+      vName: {
+        type: DataTypes.STRING,
       },
     },
     {

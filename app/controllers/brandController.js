@@ -35,3 +35,20 @@ exports.addBrand = async (req, res, next) => {
     });
   }
 };
+
+exports.getAllBrands = async (req, res, next) => {
+  try {
+    const brands = await Brand.findAll();
+    res.status(201).json({
+      status: 201,
+      success: true,
+      brands,
+    });
+  } catch (error) {
+    console.error("Error adding brand:", error.message);
+    res.status(500).json({
+      success: false,
+      error: "Internal Server Error",
+    });
+  }
+};
