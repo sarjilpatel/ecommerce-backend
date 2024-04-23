@@ -65,9 +65,14 @@ exports.addCategory = async (req, res, next) => {
 exports.getAllCategories = async (req, res, next) => {
   try {
     const categories = await Category.findAll({
-      include: {
-        model: Group,
-      },
+      include: [
+        {
+          model: Group,
+        },
+        {
+          model: SizeCategory,
+        },
+      ],
     });
 
     res.status(200).json({
@@ -76,10 +81,10 @@ exports.getAllCategories = async (req, res, next) => {
       categories,
     });
   } catch (error) {
-    console.error("Error in getting categories: ", error.message);
     res.status(500).json({
       success: false,
-      error: "Internal Server Error",
+      message: "Internal Server Error",
+      error: error.message,
     });
   }
 };
